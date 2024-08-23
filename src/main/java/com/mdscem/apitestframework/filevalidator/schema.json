@@ -38,13 +38,20 @@
       },
       "saveResponse": {
         "type": "object"
-        }
       },
       "priority": {
         "type": "integer",
         "minimum": 1
       }
     },
-    "required": ["id", "url", "method", "expectedResponseCode", "testName", "requiresAuthentication", "priority"]
+    "required": [
+      "id",
+      "url",
+      "method",
+      "expectedResponseCode",
+      "testName",
+      "requiresAuthentication",
+      "priority"
+    ]
   }
-
+}

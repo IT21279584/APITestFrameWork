@@ -1,17 +1,18 @@
 package com.mdscem.apitestframework.fileprocessor.filereader;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.mdscem.apitestframework.filevalidator.JsonSchemaValidationWithJsonNode;
 
 import java.util.List;
 
 public class ApiTestMain {
     public static void main(String[] args) {
-        TestCaseLoader testCaseLoader = new TestCaseLoader("/home/hansakasudusinghe/Documents/APITestFrameWork/src/main/resources/testcases.yaml");
+        TestCaseLoader testCaseLoader = new TestCaseLoader("/home/kmedagoda/APITestFrameWork/src/main/resources/testcases.json");
 
 
         JsonNode testCases = testCaseLoader.loadTestCases();
         if (testCases != null) {
-            System.out.println("Loaded from Data: " + testCases.toPrettyString());
+            JsonSchemaValidationWithJsonNode.validateFile(testCases);
         }
     }
 }
