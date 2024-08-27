@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "url": "http://localhost:8081/api/interview/all_interviews",
+    "method": "GET",
+    "payload": "",
+    "expectedResponseCode": 200,
+    "testName": "kbm",
+    "expectedResponseBody": [
+      {
+        "interviewid": 1,
+        "interviewType": "HR"
+      },
+      {
+        "interviewid": 2,
+        "interviewType": "TECHNICAL"
+      },
+      {
+        "interviewid": 3,
+        "interviewType": "TECHNICAL"
+      }
+    ],
+    "requiresAuthentication": true,
+    "priority": 1
+  },
+  {
+    "id": "2",
+    "url": "http://localhost:8081/api/interview/interview-details/1",
+    "method": "GET",
+    "payload": "",
+    "expectedResponseCode": 200,
+    "testName": "interview_detail_retrieval",
+    "expectedResponseBody": "{\"interviewid\": 1, \"interviewType\": \"HR\", \"interviewDate\": \"2024-04-30\"}",
+    "requiresAuthentication": true,
+    "priority": 2
+  },
+  {
+    "id": "3",
+    "url": "http://localhost:8081/api/candidate/hire/9",
+    "method": "PUT",
+    "payload": "{\"status\":\"reject\"}",
+    "expectedResponseCode": 200,
+    "testName": "update_hire",
+    "expectedResponseBody": "",
+    "requiresAuthentication": true,
+    "priority": 3
+  },
+  {
+    "id": "4",
+    "url": "http://localhost:8081/api/projects/project/save",
+    "method": "POST",
+    "payload": {
+      "project": {
+        "projectName": "project ssss",
+        "projectCode": "18"
+      },
+      "userID": 3
+    },
+    "expectedResponseCode": 200,
+    "testName": "project_save",
+    "expectedResponseBody": {
+      "projectID": 8,
+      "projectName": "project ssss",
+      "projectCode": "18",
+      "users": {
+        "id": 3,
+        "firstName": "thusitha",
+        "lastName": "dinesh"
+      }
+    },
+    "requiresAuthentication": true,
+    "priority": 4
+  },
+  {
+    "id": "5",
+    "url": "http://localhost:8081/api/projects/delete/3",
+    "method": "DELETE",
+    "payload": "",
+    "expectedResponseCode": 200,
+    "testName": "project_delete",
+    "expectedResponseBody": "",
+    "requiresAuthentication": true,
+    "priority": 5
+  }
+]
+
