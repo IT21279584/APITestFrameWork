@@ -9,7 +9,7 @@ import java.io.StringReader;
 public class YamlFileReader implements IFileReader {
 
     @Override
-    public JsonNode readTestCases(JsonNode content) {
+    public JsonNode readTestCases(String content) {
         try {
             // Initialize ObjectMapper with YAMLFactory
             ObjectMapper yamlMapper = new ObjectMapper(new YAMLFactory());
@@ -18,7 +18,6 @@ public class YamlFileReader implements IFileReader {
             String yamlContent = content.toString();
             JsonNode jsonNode = yamlMapper.readTree(new StringReader(yamlContent));
 
-            System.out.println("My JsonNode " + jsonNode);
             return jsonNode;
         } catch (IOException e) {
             e.printStackTrace();

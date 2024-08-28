@@ -5,11 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonFileReader implements IFileReader{
     @Override
-    public JsonNode readTestCases(JsonNode content) {
+    public JsonNode readTestCases(String content) {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(content.toString());
-            System.out.println("My JsonNode " + jsonNode ) ;
             return jsonNode;
         }catch(Exception e){
             e.printStackTrace();

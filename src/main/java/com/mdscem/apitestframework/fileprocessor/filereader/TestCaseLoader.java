@@ -29,36 +29,35 @@ public class TestCaseLoader {
 
         if (fileName.endsWith(".json")) {
             iFileReader = new JsonFileReader();
-            objectMapper = new ObjectMapper();
         } else if (fileName.endsWith(".yaml") || fileName.endsWith(".yml")) {
             iFileReader = new YamlFileReader();
-            objectMapper = new ObjectMapper(new YAMLFactory());
         } else {
             throw new IllegalArgumentException("Unsupported file type " + fileName);
         }
         return new FileReaderContext(iFileReader);
     }
 
-    public List<TestCase> loadTestCases() {
-        List<TestCase> testCases = new ArrayList<>();
+    public JsonNode loadTestCases() {
+
+        JsonNode loadedTestCases = null;
         try {
             Path filePath = Paths.get(fileName);
             if (!Files.exists(filePath)) {
                 System.err.println("Could not find the file: " + fileName);
-                return Collections.emptyList();
+                //return loadedTestCases;
             }
 
             String fileContent = new String(Files.readAllBytes(filePath));
 
-            JsonNode jsonNode = objectMapper.readTree(fileContent);
-            JsonNode loadedTestCases = fileReaderContext.loadTestCases(jsonNode);
+            loadedTestCases = fileReaderContext.loadTestCases(fileContent);
 
             // Convert the processed JsonNode back to a list of TestCase
-            testCases = objectMapper.convertValue(loadedTestCases, new TypeReference<List<TestCase>>() {});
+            //testCases = objectMapper.convertValue(loadedTestCases, new TypeReference<List<TestCase>>() {});
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return testCases;
+        return loadedTestCases;
     }
+
 }
